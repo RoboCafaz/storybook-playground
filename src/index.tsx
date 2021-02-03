@@ -1,4 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Home } from './pages/home';
 
-render(<h1>Hello world!</h1>, document.getElementById('root'));
+render(<Home />, document.getElementById('root'));
