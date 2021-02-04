@@ -7,15 +7,12 @@ import hamburger from '../components/icons/hamburger.svg';
 import hotdog from '../components/icons/hotdog.svg';
 import { snackSelector, updateSnackAction } from '../redux/store';
 
-export const Home = () => {
-  const snack = useSelector(snackSelector);
-  const dispatch = useDispatch();
-  const setSnack = useCallback(
-    (snack: string) => {
-      dispatch(updateSnackAction({ snack }));
-    },
-    [dispatch]
-  );
+export interface HomeImplProps {
+  snack?: string;
+  setSnack: (snack: string) => void;
+}
+
+export const HomeImpl = ({ snack, setSnack }: HomeImplProps) => {
   const snackElement = useMemo(() => {
     if (snack) {
       return (
@@ -64,4 +61,16 @@ export const Home = () => {
       {snackElement}
     </React.Fragment>
   );
+};
+
+export const Home = () => {
+  const snack = useSelector(snackSelector);
+  const dispatch = useDispatch();
+  const setSnack = useCallback(
+    (snack: string) => {
+      dispatch(updateSnackAction({ snack }));
+    },
+    [dispatch]
+  );
+  return <HomeImpl snack={snack} setSnack={setSnack} />;
 };
