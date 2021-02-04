@@ -1,15 +1,41 @@
 import React from 'react';
 
 export type ButtonProps = React.PropsWithChildren<{
+  /**
+   * Color of text in button
+   */
   fontColor?: string;
+  /**
+   * Color of button
+   */
   color?: string;
+  /**
+   * Size of button border in pixels
+   */
   borderSize?: number;
+  /**
+   * Color of button border
+   */
   borderColor?: string;
+  /**
+   * Whether or not to round the border
+   */
   rounded?: boolean;
+  /**
+   * Set to true to disable
+   */
   disabled?: boolean;
+  /**
+   * Action to perform when clicked
+   */
   onClick?: () => void;
 }>;
 
+/**
+ * A swagalicious button
+ * 
+ * @param param0 
+ */
 export const Button = ({
   children,
   fontColor = 'blue',
