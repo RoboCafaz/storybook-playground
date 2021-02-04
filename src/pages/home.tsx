@@ -1,12 +1,21 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../components/button';
 
 import chicken from '../components/icons/chicken.svg';
 import hamburger from '../components/icons/hamburger.svg';
 import hotdog from '../components/icons/hotdog.svg';
+import { snackSelector, updateSnackAction } from '../redux/store';
 
 export const Home = () => {
-  const [snack, setSnack] = useState<string>('');
+  const snack = useSelector(snackSelector);
+  const dispatch = useDispatch();
+  const setSnack = useCallback(
+    (snack: string) => {
+      dispatch(updateSnackAction({ snack }));
+    },
+    [dispatch]
+  );
   const snackElement = useMemo(() => {
     if (snack) {
       return (
